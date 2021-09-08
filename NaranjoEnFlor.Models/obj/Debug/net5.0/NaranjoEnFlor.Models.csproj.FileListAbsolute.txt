@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\NaranjoEnFlor.Models\bin\Debug\net5.0\NaranjoEnFlor.Models.deps.json
+C:\Users\User\source\repos\NaranjoEnFlor.Models\bin\Debug\net5.0\NaranjoEnFlor.Models.dll
+C:\Users\User\source\repos\NaranjoEnFlor.Models\bin\Debug\net5.0\ref\NaranjoEnFlor.Models.dll
+C:\Users\User\source\repos\NaranjoEnFlor.Models\bin\Debug\net5.0\NaranjoEnFlor.Models.pdb
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.AssemblyInfo.cs
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.dll
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\ref\NaranjoEnFlor.Models.dll
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.pdb
+C:\Users\User\source\repos\NaranjoEnFlor.Models\obj\Debug\net5.0\NaranjoEnFlor.Models.csproj.AssemblyReference.cache
