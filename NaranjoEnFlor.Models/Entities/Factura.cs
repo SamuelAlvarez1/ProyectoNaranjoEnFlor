@@ -12,8 +12,13 @@ namespace NaranjoEnFlor.Models.Entities
 
         public DateTime fecha { get; set; }
 
-        public int IdCliente { get; set; }
-
         public int total { get; set; }
+        public bool Estado{ get; set; }
+
+        public virtual Cliente Cliente { get; set; }
+
+        public virtual MetodoPago MetodoPago { get; set; }
+
+        public virtual List<Producto> Productos { get; set; }
     }
 }

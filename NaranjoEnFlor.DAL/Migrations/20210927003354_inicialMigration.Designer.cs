@@ -10,8 +10,8 @@ using NaranjoEnFlor.DAL;
 namespace NaranjoEnFlor.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210906220944_si")]
-    partial class si
+    [Migration("20210927003354_inicialMigration")]
+    partial class inicialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,13 +29,22 @@ namespace NaranjoEnFlor.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("contraseña")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("Id");
 
@@ -49,7 +58,13 @@ namespace NaranjoEnFlor.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("IdCliente")
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("MetodoPagoIdMetodoPago")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("fecha")
@@ -59,6 +74,10 @@ namespace NaranjoEnFlor.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("codigo");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("MetodoPagoIdMetodoPago");
 
                     b.ToTable("facturas");
                 });
@@ -85,12 +104,31 @@ namespace NaranjoEnFlor.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
                     b.Property<string>("nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("IdMetodoPago");
 
                     b.ToTable("metodosPago");
+
+                    b.HasData(
+                        new
+                        {
+                            IdMetodoPago = 1,
+                            Estado = false,
+                            nombre = "Efectivo"
+                        },
+                        new
+                        {
+                            IdMetodoPago = 2,
+                            Estado = false,
+                            nombre = "transferencia"
+                        });
                 });
 
             modelBuilder.Entity("NaranjoEnFlor.Models.Entities.Producto", b =>
@@ -101,14 +139,52 @@ namespace NaranjoEnFlor.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Cantidad")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Facturacodigo")
+                        .HasColumnType("int");
+
                     b.Property<string>("nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("IdProducto");
 
+                    b.HasIndex("Facturacodigo");
+
                     b.ToTable("productos");
+                });
+
+            modelBuilder.Entity("NaranjoEnFlor.Models.Entities.Factura", b =>
+                {
+                    b.HasOne("NaranjoEnFlor.Models.Entities.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("NaranjoEnFlor.Models.Entities.MetodoPago", "MetodoPago")
+                        .WithMany()
+                        .HasForeignKey("MetodoPagoIdMetodoPago");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("MetodoPago");
+                });
+
+            modelBuilder.Entity("NaranjoEnFlor.Models.Entities.Producto", b =>
+                {
+                    b.HasOne("NaranjoEnFlor.Models.Entities.Factura", null)
+                        .WithMany("Productos")
+                        .HasForeignKey("Facturacodigo");
+                });
+
+            modelBuilder.Entity("NaranjoEnFlor.Models.Entities.Factura", b =>
+                {
+                    b.Navigation("Productos");
                 });
 #pragma warning restore 612, 618
         }

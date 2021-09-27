@@ -8,4 +8,8 @@
     <ProjectReference Include="..\NaranjoEnFlor.DAL\NaranjoEnFlor.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\Mesas\" />
+  </ItemGroup>
+
 </Project>

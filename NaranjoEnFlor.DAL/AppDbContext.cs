@@ -14,6 +14,13 @@ namespace NaranjoEnFlor.DAL
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
+        }
+
         public DbSet<Cliente> clientes { get; set; }
         public DbSet<Factura> facturas { get; set; }
         public DbSet<Mesa> mesas { get; set; }
